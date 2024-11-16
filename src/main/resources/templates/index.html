@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>MedScheduler</title>
+    <link rel="stylesheet" th:href="@{/css/indexStyle.css}">
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1>Bine ai venit la MedScheduler</h1>
+    </header>
+    <nav>
+        <ul>
+            <li><a th:href="@{/login}">Autentificare</a></li>
+            <li><a th:href="@{/register}">Înregistrare</a></li>
+        </ul>
+    </nav>
+    <main>
+        <p>Aceasta este aplicația ta pentru gestionarea pacienților dintr-o clinică medicală.</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 MedScheduler. Toate drepturile rezervate.</p>
+    </footer>
+</div>
+</body>
+</html>

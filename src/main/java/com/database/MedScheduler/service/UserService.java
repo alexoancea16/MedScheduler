@@ -1,5 +1,6 @@
 package com.database.MedScheduler.service;
 
+import com.database.MedScheduler.dto.RegistrationDto;
 import com.database.MedScheduler.models.User;
 
 import java.util.List;
@@ -16,6 +17,8 @@ public interface UserService {
     Optional<User> getUserByEmail(String email);
 
     User saveUser(User user);
+
+    void saveUser(RegistrationDto registrationDto); // Noua metodă
 
     boolean deleteUser(Long id);
 }
