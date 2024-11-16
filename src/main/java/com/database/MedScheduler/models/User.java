@@ -32,15 +32,34 @@ public class User {
     @Column(nullable = false)
     private String password;
 
-    @CreationTimestamp // Populează automat cu data și ora curentă
-    @Column(name = "created_at", updatable = false) // Nu permite actualizarea după creare
+    @CreationTimestamp
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
+
+    @Column(nullable = false)
+    private Boolean enabled = true;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "users_roles", // Numele tabelei intermediare
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), // Legătura cu User
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id") // Legătura cu Role
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
     private List<Role> roles = new ArrayList<>();
+
+    @ManyToOne
+    @JoinColumn(name = "pacient_id")
+    private Pacient pacient;
+
+    @ManyToOne
+    @JoinColumn(name = "medic_id")
+    private Medic medic;
+
+    public boolean isPacient() {
+        return this.pacient != null;
+    }
+
+    public boolean isMedic() {
+        return this.medic != null;
+    }
 }
