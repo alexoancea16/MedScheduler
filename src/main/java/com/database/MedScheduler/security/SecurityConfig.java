@@ -38,7 +38,7 @@ public class SecurityConfig {
                 )
                 .logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout")) // Endpoint pentru logout
-                        .logoutSuccessUrl("/login?logout") // Redirecționare după logout
+                        .logoutSuccessUrl("/") // Redirecționare către pagina de index
                         .invalidateHttpSession(true) // Invalidează sesiunea
                         .deleteCookies("JSESSIONID") // Șterge cookie-urile
                         .permitAll()

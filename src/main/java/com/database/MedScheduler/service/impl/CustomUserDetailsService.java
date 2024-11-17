@@ -6,8 +6,13 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
-@Service("serviceUserDetailsService")
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+@Service
 public class CustomUserDetailsService implements UserDetailsService {
 
     private final UserRepository userRepository;
@@ -17,20 +22,26 @@ public class CustomUserDetailsService implements UserDetailsService {
     }
 
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userRepository.findFirstByUsername(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User not found with username: " + username));
+    public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
+        // Caută utilizatorul fie după username, fie după email
+        User user = userRepository.findByUsername(usernameOrEmail)
+                .or(() -> userRepository.findByEmail(usernameOrEmail))
+                .orElseThrow(() -> new UsernameNotFoundException("User not found with username or email: " + usernameOrEmail));
 
-        return org.springframework.security.core.userdetails.User
-                .withUsername(user.getUsername())
-                .password(user.getPassword())
-                .authorities(user.getRoles().stream()
-                        .map(role -> "ROLE_" + role.getName())
-                        .toArray(String[]::new))
-                .accountExpired(false)
-                .accountLocked(false)
-                .credentialsExpired(false)
-                .disabled(false)
-                .build();
+        // Transformă rolurile utilizatorului într-o colecție de autorități
+        Collection<GrantedAuthority> authorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getName())) // Corect: folosește getter-ul pentru 'name'
+                .collect(Collectors.toList());
+
+        // Creează un UserDetails utilizând clasa Spring
+        return new org.springframework.security.core.userdetails.User(
+                user.getUsername(),
+                user.getPassword(),
+                user.getEnabled(),
+                true,
+                true,
+                true,
+                authorities
+        );
     }
 }

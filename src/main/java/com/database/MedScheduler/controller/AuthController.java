@@ -36,10 +36,12 @@ public class AuthController {
 
     // Endpoint pentru înregistrarea utilizatorului (POST - procesare formular)
     @PostMapping("/register")
-    public String registerUser(@ModelAttribute("user") RegistrationDto registrationDto) {
-        // Salvează utilizatorul folosind UserService
+    public String registerUser(@ModelAttribute("user") RegistrationDto registrationDto, Model model) {
+        if (!registrationDto.getPassword().equals(registrationDto.getConfirmPassword())) {
+            model.addAttribute("error", "Parola și confirmarea parolei nu coincid!");
+            return "register"; // Revine la pagina de înregistrare
+        }
         userService.saveUser(registrationDto);
-        // Redirecționează către login cu un mesaj de succes
         return "redirect:/login?success";
     }
 
