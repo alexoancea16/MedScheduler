@@ -1,0 +1,101 @@
+/* Resetare de bază */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Fundalul paginii de login */
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    background-image: url('../images/background.jpg'); /* Imaginea de fundal */
+    background-size: cover;
+    background-position: center;
+    font-family: Arial, sans-serif;
+}
+
+/* Containerul formularului */
+.login-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    background-color: rgba(0, 0, 0, 0.6); /* Fundal semitransparent */
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 15px;
+    backdrop-filter: blur(15px);
+    padding: 2rem;
+    color: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+}
+
+/* Titlu */
+.login-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    color: white;
+}
+
+/* Stilizarea câmpurilor de input */
+.login-container input[type="text"],
+.login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: none;
+    border-bottom: 2px solid white;
+    background: transparent;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+}
+
+/* Etichetele câmpurilor */
+.login-container label {
+    font-size: 1rem;
+    color: white;
+}
+
+/* Butonul de login */
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.login-container button:hover {
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+/* Link-ul către pagina de register */
+.login-container p {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: white;
+}
+
+.login-container p a {
+    text-decoration: none;
+    color: #00bfff;
+    font-weight: bold;
+}
+
+.login-container p a:hover {
+    text-decoration: underline;
+}
+
+/* Adăugare efecte hover */
+input:focus {
+    border-bottom: 2px solid #00bfff;
+}

@@ -1,9 +1,14 @@
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
     margin: 0;
     padding: 0;
+    background-image: url('../images/background.jpg'); /* Calea către imagine */
+    background-size: cover; /* Imaginea să ocupe întregul ecran */
+    background-position: center; /* Poziționează imaginea în centru */
+    background-repeat: no-repeat; /* Fără repetare a imaginii */
+    height: 100vh; /* Înălțimea să fie întregul ecran */
+    font-family: Arial, sans-serif;
 }
+
 
 .container {
     text-align: center;
