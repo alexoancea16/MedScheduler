@@ -7,126 +7,175 @@
 
 /* Fundalul paginii */
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
-    background-image: url('../images/background.jpg'); /* Imaginea de fundal */
+    font-family: 'Montserrat', sans-serif;
+    background-image: url('../images/background.jpg'); /* Fundal imagine */
     background-size: cover;
     background-position: center;
-    font-family: Arial, sans-serif;
-    overflow: auto; /* Permite derularea dacă este necesar */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column; /* Layout flexibil */
 }
 
-/* Containerul principal pentru înregistrare */
+.header {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6); /* Fundal semitransparent */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header nav {
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 100;
+}
+
+.header h1 {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+}
+.nav-links {
+    flex: 1;
+    text-align: right;
+}
+.header .nav-links ul {
+    list-style: none;
+}
+.nav-links ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+.header .nav-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.header .nav-links ul li a:hover {
+    text-decoration: underline;
+    color: #f44336;
+}
+/* Containerul formularului */
 .register-container {
+    flex-grow: 1; /* Spațiu disponibil între header și footer */
     width: 100%;
     max-width: 600px;
+    margin: 150px auto 100px; /* Spațiu între header și footer */
     background-color: rgba(0, 0, 0, 0.6); /* Fundal semitransparent */
     border: 2px solid rgba(255, 255, 255, 0.3);
     border-radius: 15px;
     padding: 2rem;
     color: white;
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
-    overflow-y: auto; /* Permite derularea pe verticală */
-    max-height: 90vh; /* Setăm o înălțime maximă */
 }
 
-/* Titlul formularului */
+/* Titlu */
 .register-container h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
     text-align: center;
     color: white;
 }
 
-/* Stilizarea câmpurilor */
+/* Formular */
 .register-container form div {
     margin-bottom: 1rem;
-    display: flex;
-    flex-direction: column;
 }
 
-/* Etichetele câmpurilor */
-.register-container form label {
-    margin-bottom: 0.5rem;
-    font-size: 1rem;
-    color: white;
-}
-
-/* Input-urile */
-.register-container form input,
-.register-container form select {
-    padding: 0.5rem;
-    font-size: 1rem;
+.register-container input[type="text"],
+.register-container input[type="email"],
+.register-container input[type="password"],
+.register-container input[type="date"],
+.register-container input[type="number"],
+.register-container select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
     border: none;
     border-bottom: 2px solid white;
-    background-color: transparent;
+    background: transparent;
     color: white;
-    outline: none;
-    transition: all 0.3s ease;
-}
-
-/* Efect la focus */
-.register-container form input:focus,
-.register-container form select:focus {
-    border-bottom: 2px solid #00bfff;
-}
-
-/* Stilizarea butonului */
-.register-container form button {
-    padding: 0.8rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    background-color: rgba(255, 255, 255, 1);
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-    color: #000;
-    transition: all 0.3s ease;
-    margin-top: 1rem;
-}
-
-.register-container form button:hover {
-    background-color: rgba(255, 255, 255, 0.8);
-}
-
-/* Link-ul pentru login */
-.register-container p {
-    text-align: center;
-    margin-top: 1rem;
     font-size: 1rem;
-    color: #fff;
+    outline: none;
+}
+
+.register-container label {
+    font-size: 1rem;
+    color: white;
+}
+
+/* Buton */
+.register-container button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: white;
+    color: black;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.register-container button:hover {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Link */
+.register-container p {
+    margin-top: 1rem;
+    text-align: center;
+    font-size: 0.9rem;
+    color: white;
 }
 
 .register-container p a {
-    color: #00bfff;
     text-decoration: none;
+    color: #00bfff;
     font-weight: bold;
-    transition: all 0.3s ease;
 }
 
 .register-container p a:hover {
     text-decoration: underline;
-    color: #a8a8a8;
 }
 
-/* Ajustări pentru responsive */
-@media (max-width: 768px) {
-    .register-container {
-        padding: 1.5rem;
-    }
+/* Footer */
+.footer {
+    background: #fff;
+    padding: 20px 0;
+    text-align: center;
+    color: black;
+    margin-top: auto; /* Împinge footer-ul jos */
+}
 
-    .register-container h2 {
-        font-size: 2rem;
-    }
+.footer h4 {
+    margin-bottom: 10px;
+}
 
-    .register-container form input,
-    .register-container form select {
-        font-size: 0.9rem;
-    }
+.social-media {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
-    .register-container form button {
-        font-size: 1rem;
-    }
+.social-media .media {
+    margin: 0;
+}
+
+.social-media svg {
+    width: 40px;
+    height: 40px;
+    transition: transform 0.3s;
+}
+
+.social-media svg:hover {
+    transform: scale(1.1);
 }
