@@ -48,10 +48,10 @@ public class AuthController {
     // Endpoint pentru pagina principală (home)
     @GetMapping("/home")
     public String home() {
-        return "home"; // Thymeleaf va căuta home.html
+        return "home";
     }
     @GetMapping("/")
     public String index() {
-        return "index"; // Returnează pagina index.html
+        return "index";
     }
 }
