@@ -1,0 +1,73 @@
+<!-- Oancea Alexandru, pagina pentru a adauga o consultatie, versiunea 10.1.2025 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adaugă Consultatie</title>
+    <link rel="stylesheet" th:href="@{/css/consultatiiaddStyle.css}">
+</head>
+<body>
+<nav>
+    <div><h1>MedScheduler</h1></div>
+    <div class="nav-links">
+        <ul>
+            <li><a th:href="@{/}">Acasa</a></li>
+            <li><a th:href="@{/pacienti}">Pacienti</a></li>
+            <li><a th:href="@{/consultatii}">Consultatii</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1>Adaugă Consultatie</h1>
+    <form th:action="@{/consultatii/salveaza}" method="post">
+        <label for="cnp">CNP Pacient:</label>
+        <input type="text" id="cnp" name="cnp" placeholder="Introduceți CNP-ul"
+               maxlength="13"
+               pattern="\d{13}"
+               title="CNP-ul trebuie să conțină exact 13 cifre."
+               required>
+        <br>
+        <label for="data">Data Programării:</label>
+        <input type="date" id="data" name="data" required>
+        <br>
+        <label for="ora">Ora Programării:</label>
+        <input type="time" id="ora" name="ora" required>
+        <br>
+
+        <label for="specializare">Specializare:</label>
+        <select id="specializare" name="specializare" required>
+            <option value="" disabled selected>Alegeți Specializarea</option>
+            <option value="Cardiologie">Cardiologie</option>
+            <option value="Neurologie">Neurologie</option>
+            <option value="Dermatologie">Dermatologie</option>
+            <option value="Pediatrie">Pediatrie</option>
+            <option value="Ortopedie">Ortopedie</option>
+        </select>
+        <br>
+
+        <label for="numeMedic">Nume Medic:</label>
+        <select id="numeMedic" name="numeMedic" required>
+            <option value="" disabled selected>Alegeți Medicul</option>
+            <option value="Dr. Vasile Popa">Dr. Vasile Popa</option>
+            <option value="Dr. Ana Dumitru">Dr. Ana Dumitru</option>
+            <option value="Dr. Mihai Georgescu">Dr. Mihai Georgescu</option>
+            <option value="Dr. Ioana Ionescu">Dr. Ioana Ionescu</option>
+            <option value="Dr. Andrei Marinescu">Dr. Andrei Marinescu</option>
+        </select>
+        <br>
+
+        <label for="nrSalon">Număr Salon:</label>
+        <input type="number" id="nrSalon" name="nrSalon" required>
+        <br>
+        <button type="submit">Salvează Consultatia</button>
+        <a th:href="@{/consultatii}" class="btn">Anulează</a>
+    </form>
+
+    <div class="error" th:if="${error}">
+        <p th:text="${error}" style="color: red; font-weight: bold;"></p>
+        <a th:href="@{/pacienti/adauga}" class="btn">Adauga pacient!</a>
+    </div>
+</div>
+</body>
+</html>

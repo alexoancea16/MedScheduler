@@ -1,0 +1,89 @@
+<!-- Oancea Alexandru, pagina principala pentru gestionare consultatiilor, versiunea 10.1.2025 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consultatii</title>
+    <link rel="stylesheet" th:href="@{/css/consultatiiStyle.css}">
+</head>
+<body>
+<nav>
+    <div><h1>MedScheduler</h1></div>
+    <div class="nav-links">
+        <ul>
+            <li><a th:href="@{/}">Acasa</a></li>
+            <li><a th:href="@{/pacienti}">Pacienti</a></li>
+            <li><a th:href="@{/consultatii}">Consultatii</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1>Lista Consultațiilor</h1>
+
+    <div class="actions">
+        <form method="get" th:action="@{/consultatii}">
+            <label for="sortBy">Sortează după:</label>
+            <select name="sortBy" id="sortBy">
+                <option value="data" th:selected="${param.sortBy == 'data'}">Dată</option>
+                <option value="specializare" th:selected="${param.sortBy == 'specializare'}">Specializare</option>
+            </select>
+            <button type="submit">Sortează</button>
+        </form>
+        <button type="button"> <a th:href="@{/consultatii/adauga}" class="btn">Adaugă Consultatie</a></button>
+
+        <div class="cauta">
+            <div class="search">
+                <h2>Caută Consultație</h2>
+                <form method="get" th:action="@{/consultatii/cauta}">
+                    <label for="cnp">CNP:</label>
+                    <input type="text" id="cnp" name="cnp" placeholder="Introdu CNP-ul" th:value="${cnp}" required>
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" th:value="${data}" required>
+                    <button type="submit">Caută</button>
+                </form>
+            </div>
+
+            <div th:if="${message}" class="no-results">
+                <p th:text="${message}"></p>
+            </div>
+        </div>
+    </div>
+
+    <table class="consultatii-table">
+        <thead>
+        <tr>
+            <th>ID Consultatie</th>
+            <th>Data</th>
+            <th>Ora</th>
+            <th>Nr. Salon</th>
+            <th>Specializare</th>
+            <th>Nume Medic</th>
+            <th>Nume Pacient</th>
+            <th>Prenume Pacient</th>
+            <th>Acțiuni</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="consultatie : ${consultatii}">
+            <td th:text="${consultatie['id_consultatie']}"></td>
+            <td th:text="${consultatie['data']}"></td>
+            <td th:text="${consultatie['ora']}"></td>
+            <td th:text="${consultatie['nr_salon']}"></td>
+            <td th:text="${consultatie['specializare']}"></td>
+            <td th:text="${consultatie['nume_medic']}"></td>
+            <td th:text="${consultatie['pacient_nume']}"></td>
+            <td th:text="${consultatie['pacient_prenume']}"></td>
+            <td>
+
+                <form th:action="@{/consultatii/sterge/{id}(id=${consultatie['id_consultatie']})}" method="post"
+                      th:onsubmit="'return confirm(\'Sigur doriți să ștergeți consultația cu ID-ul ' + ${consultatie['id_consultatie']} + '?\');'">
+                    <button type="submit">Șterge</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

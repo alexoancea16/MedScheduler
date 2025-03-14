@@ -1,0 +1,246 @@
+/*
+Fisier pentru stil pentru pagina pacienti.html
+Oancea Constantin-Alexandru
+Versiunea: 10.1.2025
+*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('../images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+}
+
+nav {
+    display: flex;
+    padding: 2% 6%;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 100;
+}
+
+nav h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+
+.nav-links {
+    flex: 1;
+    text-align: right;
+}
+
+.nav-links ul {
+    list-style: none;
+}
+
+.nav-links ul li {
+    display: inline-block;
+    margin: 0 10px;
+}
+
+.nav-links ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+.nav-links ul li a:hover {
+    color: #f44336;
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 100px auto 50px; /* Pentru a evita bara de navigare fixă */
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.search-container {
+    margin: 40px 0;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.search-container h2 {
+    color: #fff;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.search-container form {
+    display: inline-block;
+}
+
+.search-container input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 16px;
+    width: 300px;
+}
+
+.search-container button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #f44336;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.search-container button:hover {
+    background-color: #d32f2f;
+}
+
+.pacienti-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.pacienti-table thead {
+    background-color: #f44336;
+    color: #fff;
+}
+
+.pacienti-table th, .pacienti-table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.pacienti-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.pacienti-table tr:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.search-result-table {
+    margin: 20px auto;
+    width: 60%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+.search-result-table th,
+.search-result-table td {
+    text-align: left;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+.search-result-table th {
+    background-color: #f44336;
+    color: #fff;
+    font-weight: bold;
+}
+
+.search-result-table td {
+    color: #000;
+}
+
+.search-result-table tr:nth-child(even) {
+    background-color: rgba(0, 0, 0, 0.05);
+}
+
+.search-result-table tr:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+
+.error {
+    color: #f44336;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+
+dialog {
+    padding: 20px;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    text-align: center;
+    color: #333;
+}
+
+dialog p {
+    margin-bottom: 20px;
+}
+
+dialog button {
+    margin: 10px 5px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+dialog button:first-of-type {
+    background-color: #f44336;
+    color: #fff;
+}
+
+dialog button:first-of-type:hover {
+    background-color: #d32f2f;
+}
+
+dialog button:last-of-type {
+    background-color: #ddd;
+    color: #333;
+}
+
+dialog button:last-of-type:hover {
+    background-color: #ccc;
+}
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 15px;
+    text-align: center;
+    text-decoration: none;
+    background-color: #f44336;
+    color: white;
+    border-radius: 8px;
+    transition: background-color 0.3s ease;
+}
+
+
+.btn-large {
+    padding: 20px 40px;
+    font-size: 20px;
+}
+
+
+.btn:hover {
+    background-color: #d32f2f;
+}
+

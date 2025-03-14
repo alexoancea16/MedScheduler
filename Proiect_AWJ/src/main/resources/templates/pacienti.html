@@ -1,0 +1,127 @@
+<!-- Oancea Alexandru, pagina pentru gestiune pacienti, versiunea 10.1.2025 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacienți</title>
+    <link rel="stylesheet" th:href="@{/css/pacientiStyle.css}">
+</head>
+<body>
+<nav>
+    <div><h1>MedScheduler</h1></div>
+    <div class="nav-links">
+        <ul>
+            <li><a th:href="@{/}">Acasa</a></li>
+            <li><a th:href="@{/pacienti}">Pacienti</a></li>
+            <li><a th:href="@{/consultatii}">Consultatii</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1>Lista Pacienților</h1>
+    <button type="button"><a th:href="@{/pacienti/adauga}" class="btn">Adaugă Pacient Nou</a></button>
+    <!-- Tabel pentru afișarea pacienților -->
+    <table class="pacienti-table">
+        <thead>
+        <tr>
+            <th>Nume</th>
+            <th>Prenume</th>
+            <th>CNP</th>
+            <th>Telefon</th>
+            <th>Email</th>
+            <th>Acțiune 1</th>
+            <th>Actiune 2</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pacient : ${pacienti}">
+            <td th:text="${pacient.nume}"></td>
+            <td th:text="${pacient.prenume}"></td>
+            <td th:text="${pacient.cnp}"></td>
+            <td th:text="${pacient.telefon}"></td>
+            <td th:text="${pacient.email}"></td>
+            <td>
+                <a th:href="@{/pacienti/editeaza/{id}(id=${pacient.id})}" class="btn">Editează</a>
+            </td>
+            <td>
+                <form th:action="@{/pacienti/sterge/{id}(id=${pacient.id})}" method="post">
+                    <button type="button" onclick="document.getElementById('dialog-${pacient.id}').showModal()">Șterge</button>
+                </form>
+
+                <dialog id="dialog-${pacient.id}">
+                    <p>Sigur doriți să ștergeți pacientul cu ID-ul <span th:text="${pacient.id}"></span>?</p>
+                    <form th:action="@{/pacienti/sterge/{id}(id=${pacient.id})}" method="post">
+                        <button type="submit">Confirmă</button>
+                    </form>
+                    <button onclick="this.closest('dialog').close()">Anulează</button>
+                </dialog>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<div class="search-container">
+    <h2>Caută pacient după CNP</h2>
+    <form th:action="@{/pacienti/cauta}" method="get">
+        <label for="cnp">Introdu CNP:</label>
+        <input type="text" id="cnp" name="cnp" placeholder="CNP..." required>
+        <button type="submit">Caută</button>
+    </form>
+</div>
+
+
+<div th:if="${pacient}">
+    <table class="search-result-table">
+        <tr>
+            <th>ID</th>
+            <td th:text="${pacient.id}"></td>
+        </tr>
+        <tr>
+            <th>Nume</th>
+            <td th:text="${pacient.nume}"></td>
+        </tr>
+        <tr>
+            <th>Prenume</th>
+            <td th:text="${pacient.prenume}"></td>
+        </tr>
+        <tr>
+            <th>CNP</th>
+            <td th:text="${pacient.cnp}"></td>
+        </tr>
+        <tr>
+            <th>Telefon</th>
+            <td th:text="${pacient.telefon}"></td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td th:text="${pacient.email}"></td>
+        </tr>
+        <tr>
+            <th>Editare date:</th>
+            <td><a th:href="@{/pacienti/editeaza/{id}(id=${pacient.id})}" class="btn">Editează</a></td>
+        </tr>
+        <tr>
+            <th>Sterge client</th>
+            <td><form th:action="@{/pacienti/sterge/{id}(id=${pacient.id})}" method="post">
+                <button type="button" onclick="document.getElementById('dialog-${pacient.id}').showModal()">Șterge</button>
+            </form>
+
+                <!-- Fereastra de confirmare -->
+                <dialog id="dialog-${pacient.id}">
+                    <p>Sigur doriți să ștergeți pacientul cu ID-ul <span th:text="${pacient.id}"></span>?</p>
+                    <form th:action="@{/pacienti/sterge/{id}(id=${pacient.id})}" method="post">
+                        <button type="submit">Confirmă</button>
+                    </form>
+                    <button onclick="this.closest('dialog').close()">Anulează</button>
+                </dialog></td>
+        </tr>
+    </table>
+</div>
+
+<div th:if="${error}">
+    <p th:text="${error}" class="error"></p>
+</div>
+</body>
+</html>

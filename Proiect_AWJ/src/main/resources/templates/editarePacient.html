@@ -1,0 +1,53 @@
+<!-- Oancea Alexandru, pagina pentru editarea datelor unui pacient, versiunea 10.1.2025 -->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editare Pacient</title>
+    <link rel="stylesheet" th:href="@{/css/pacienteditStyle.css}">
+</head>
+<body>
+<nav>
+    <div><h1>MedScheduler</h1></div>
+    <div class="nav-links">
+        <ul>
+            <li><a th:href="@{/}">Acasa</a></li>
+            <li><a th:href="@{/pacienti}">Pacienti</a></li>
+            <li><a th:href="@{/consultatii}">Consultatii</a></li>
+        </ul>
+    </div>
+</nav>
+<div class="container">
+    <h1>Editare Pacient</h1>
+
+    <form th:action="@{/pacienti/editeaza/salveaza}" method="post">
+        <input type="hidden" name="id" th:value="${pacient.id}">
+
+        <label for="nume">Nume:</label>
+        <input type="text" id="nume" name="nume" th:value="${pacient.nume}" required>
+        <br>
+
+        <label for="prenume">Prenume:</label>
+        <input type="text" id="prenume" name="prenume" th:value="${pacient.prenume}" required>
+        <br>
+
+        <label for="cnp">CNP:</label>
+        <input type="text" id="cnp" name="cnp" th:value="${pacient.cnp}" readonly maxlength="13" pattern="\d{13}" title="CNP-ul trebuie să aibă exact 13 cifre">
+        <br>
+
+        <label for="telefon">Telefon:</label>
+        <input type="text" id="telefon" name="telefon" th:value="${pacient.telefon}" maxlength="10" pattern="\d{10}" title="Numărul de telefon trebuie să conțină exact 10 cifre">
+        <br>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" th:value="${pacient.email}" minlength="5" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|ro)" title="Email-ul trebuie să fie valid și să se termine în .com sau .ro">
+        <br>
+
+        <p>Confirmați că sunteți sigur că doriți să salvați modificările?</p>
+        <button type="submit">Salvează</button>
+        <a th:href="@{/pacienti}" class="btn">Anulează</a>
+    </form>
+</div>
+</body>
+</html>
