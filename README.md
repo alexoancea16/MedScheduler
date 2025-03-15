@@ -98,5 +98,5 @@ Future Improvements:
 
 __Thank you!__
 
-Project made by Alexandru Oancea
+Project made by Alexandru Oancea <br>
 Email: alexandruoancea49@gmail.com
