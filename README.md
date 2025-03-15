@@ -1,7 +1,7 @@
 # MedScheduler - Documentation
-Web application with Java support, SpringMVC and connection to the PostgreSQL Server database.
-Project made by Alexandru Oancea
-Date: January 2025
+Web application with Java support, SpringMVC and connection to the PostgreSQL Server database. <br>
+Project made by Alexandru Oancea <br>
+Date: January 2025 <br>
 
 ## General Description
 This web application is developed to facilitate the management of medical consultations in a clinic. The system allows adding, editing, and deleting patients and consultations, integrating a PostgreSQL database for handling information. The application is built using Spring Boot, JDBC, and Thymeleaf for the frontend, while database interactions are managed through well-defined backend services.
